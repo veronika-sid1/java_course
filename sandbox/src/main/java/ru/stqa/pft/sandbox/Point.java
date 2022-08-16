@@ -18,10 +18,10 @@ public class Point {
   public static void main(String[] args) {
     Point point1 = new Point(5,2);
     Point point2 = new Point(10,4);
-    System.out.println(Point.distance(point1,point2));
+    System.out.println("Расстояние между точками (" + point1.x + "," + point1.y + ") и (" + point2.x + "," + point2.y + ") = " + Point.distance(point1,point2));
     Point point3 = new Point(12,34);
     Point point4 = new Point(-1,4);
-    System.out.println(Point.distance(point3,point4));
+    System.out.println("Расстояние между точками (" + point3.x + "," + point3.y + ") и (" + point4.x + "," + point4.y + ") = " + Point.distance(point3,point4));
   }
 
 }
