@@ -10,7 +10,7 @@ public class First {
     System.out.println("Площадь квадрата со стороной " + s.l + " = " + area(s));
 
     Rectangle r = new Rectangle(4, 6);
-    System.out.println("Площвдь прямоугольника со сторонами " + r.a + " и " + r.b + " = " + area(r));
+    System.out.println("Площадь прямоугольника со сторонами " + r.a + " и " + r.b + " = " + area(r));
   }
 
   public static void hello(String somebody) {
