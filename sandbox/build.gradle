@@ -1,3 +1,10 @@
 apply plugin: 'java'
 apply plugin: 'application'
 mainClassName = "ru.stqa.pft.sandbox.Point"
+
+repositories {
+    mavenCentral()
+}
+dependencies {
+    dependencies {implementation 'org.testng:testng:7.3.0'}
+}
