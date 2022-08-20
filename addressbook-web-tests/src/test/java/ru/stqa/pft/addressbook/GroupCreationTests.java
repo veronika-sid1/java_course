@@ -13,7 +13,6 @@ public class GroupCreationTests {
   public void setUp() throws Exception {
     System.setProperty("webdriver.chrome.driver", "C:\\Users\\Veronika\\Downloads\\chromedriver.exe");
     wd = new ChromeDriver();
-    wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
     wd.get("http://localhost/addressbook/");
     login("admin", "secret");
   }
@@ -33,7 +32,6 @@ public class GroupCreationTests {
     fillGroupForm(new GroupData("test1", "test2", "test3"));
     submitGroupCreation();
     returntoGroupPage();
-    logout();
   }
 
   private void logout() {
@@ -67,25 +65,8 @@ public class GroupCreationTests {
 
   @AfterMethod(alwaysRun = true)
   public void tearDown() throws Exception {
+    logout();
     wd.quit();
-  }
-
-  private boolean isElementPresent(By by) {
-    try {
-      wd.findElement(by);
-      return true;
-    } catch (NoSuchElementException e) {
-      return false;
-    }
-  }
-
-  private boolean isAlertPresent() {
-    try {
-      wd.switchTo().alert();
-      return true;
-    } catch (NoAlertPresentException e) {
-      return false;
-    }
   }
 
 }
