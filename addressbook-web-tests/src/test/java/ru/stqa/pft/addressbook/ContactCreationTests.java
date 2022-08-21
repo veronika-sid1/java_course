@@ -9,7 +9,6 @@ public class ContactCreationTests {
 
   @BeforeMethod(alwaysRun = true)
   public void setUp() throws Exception {
-    System.setProperty("webdriver.chrome.driver", "C:\\Users\\Veronika\\Downloads\\chromedriver.exe");
     wd = new ChromeDriver();
     wd.get("http://localhost/addressbook/");
     login("admin", "secret");
