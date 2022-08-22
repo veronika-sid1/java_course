@@ -30,6 +30,14 @@ public class ApplicationManager {
     wd.quit();
   }
 
+  public GroupHelper getGroupHelper() {
+    return groupHelper;
+  }
+
+  public NavigationHelper getNavigationHelper() {
+    return navigationHelper;
+  }
+
   public boolean isAlertPresent() {
     try {
       wd.switchTo().alert();
@@ -39,11 +47,4 @@ public class ApplicationManager {
     }
   }
 
-  public GroupHelper getGroupHelper() {
-    return groupHelper;
-  }
-
-  public NavigationHelper getNavigationHelper() {
-    return navigationHelper;
-  }
 }
