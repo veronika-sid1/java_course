@@ -59,10 +59,6 @@ public class ApplicationManager {
     return contactHelper;
   }
 
-  public void returnToHomePage() {
-    wd.findElement(By.linkText("home page")).click();
-  }
-
   public void acceptAlert() {
     wd.switchTo().alert().accept();
   }

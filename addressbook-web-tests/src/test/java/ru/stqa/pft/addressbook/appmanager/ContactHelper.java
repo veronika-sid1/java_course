@@ -43,4 +43,23 @@ public class ContactHelper extends HelperBase {
   public void updateContactInformation() {
     click(By.name("update"));
   }
+
+  public void gotoContactCreationPage() {
+    click(By.linkText("add new"));
+  }
+
+  public void returnToHomePage() {
+    wd.findElement(By.linkText("home page")).click();
+  }
+
+  public void createContact(ContactData contact, boolean b) {
+    gotoContactCreationPage();
+    fillContactInformation(contact, true);
+    submitContactCreation();
+    returnToHomePage();
+  }
+
+  public boolean isThereAContact() {
+    return isElementPresent(By.xpath("//img[@alt='Edit']"));
+  }
 }
