@@ -22,7 +22,7 @@ public class ContactHelper extends HelperBase {
     type(By.name("email"), contactData.getMail());
 
     if (creation) {
-      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+    new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
@@ -52,7 +52,7 @@ public class ContactHelper extends HelperBase {
     wd.findElement(By.linkText("home page")).click();
   }
 
-  public void createContact(ContactData contact, boolean b) {
+  public void createContact(ContactData contact) {
     gotoContactCreationPage();
     fillContactInformation(contact, true);
     submitContactCreation();
