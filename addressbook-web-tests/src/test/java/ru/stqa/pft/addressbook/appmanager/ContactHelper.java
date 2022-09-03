@@ -60,6 +60,6 @@ public class ContactHelper extends HelperBase {
   }
 
   public boolean isThereAContact() {
-    return isElementPresent(By.xpath("//img[@alt='Edit']"));
+    return isElementPresent(By.name("selected[]"));
   }
 }
