@@ -29,7 +29,7 @@ public class ApplicationManager {
       wd = new InternetExplorerDriver();
     }
     wd.get("http://localhost/addressbook/");
-    contactHelper = new ContactHelper(wd);
+    contactHelper = new ContactHelper(this);
     groupHelper = new GroupHelper(wd);
     navigationHelper = new NavigationHelper(wd);
     sessionHelper = new SessionHelper(wd);
