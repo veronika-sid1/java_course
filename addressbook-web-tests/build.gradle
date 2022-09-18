@@ -10,4 +10,5 @@ dependencies {
     dependencies {implementation 'org.testng:testng:7.3.0'}
     implementation 'org.seleniumhq.selenium:selenium-java:4.4.0'
     implementation 'org.slf4j:slf4j-simple:1.7.9'
+    implementation 'org.hamcrest:java-hamcrest:2.0.0.0'
 }
