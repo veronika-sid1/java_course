@@ -23,13 +23,18 @@ public class ContactAddressTests extends TestBase {
     }
   }
 
-    @Test
-    public void testAddress() {
-      app.goTo().homePage();
-      ContactData contact = app.contact().all().iterator().next();
-      ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
+  @Test
+  public void testAddress() {
+    app.goTo().homePage();
+    ContactData contact = app.contact().all().iterator().next();
+    ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
 
-      assertThat(contact.getAddress(), equalTo(contactInfoFromEditForm.getAddress()));
+    assertThat(contact.getAddress(), equalTo(cleaned(contactInfoFromEditForm.getAddress())));
   }
+
+  public static String cleaned(String address) {
+    return address.replaceAll("\\s+", " ");
+  }
+
 }
 
