@@ -14,6 +14,16 @@ public class ContactData {
   private String mobilePhone;
   private String workPhone;
   private String allPhones;
+  private String address;
+
+  public String getAddress() {
+    return address;
+  }
+
+  public ContactData withAddress(String address) {
+    this.address = address;
+    return this;
+  }
 
   public String getAllPhones() {
     return allPhones;
@@ -35,11 +45,6 @@ public class ContactData {
 
   public ContactData withLastname(String lastname) {
     this.lastname = lastname;
-    return this;
-  }
-
-  public ContactData withPhone(String phone) {
-    this.phone = phone;
     return this;
   }
 
