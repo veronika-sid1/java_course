@@ -3,7 +3,6 @@ package ru.stqa.pft.addressbook.generators;
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
-import org.junit.runners.Parameterized;
 import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.io.File;
@@ -42,7 +41,7 @@ public class GroupDataGenerator {
     System.out.println(new File(".").getAbsolutePath());
     Writer writer = new FileWriter(file);
     for (GroupData group : groups) {
-      writer.write(String.format("%s:%s:%s\n", group.getName(), group.getHeader(), group.getFooter()));
+      writer.write(String.format("%s;%s;%s\n", group.getName(), group.getHeader(), group.getFooter()));
     }
     writer.close();
   }
