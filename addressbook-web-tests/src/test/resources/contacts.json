@@ -1,0 +1,32 @@
+[
+  {
+    "firstname": "firstname0",
+    "lastname": "lastname0",
+    "mail": "email0@mail.ru",
+    "group": "test1"
+  },
+  {
+    "firstname": "firstname1",
+    "lastname": "lastname1",
+    "mail": "email1@mail.ru",
+    "group": "test1"
+  },
+  {
+    "firstname": "firstname2",
+    "lastname": "lastname2",
+    "mail": "email2@mail.ru",
+    "group": "test1"
+  },
+  {
+    "firstname": "firstname3",
+    "lastname": "lastname3",
+    "mail": "email3@mail.ru",
+    "group": "test1"
+  },
+  {
+    "firstname": "firstname4",
+    "lastname": "lastname4",
+    "mail": "email4@mail.ru",
+    "group": "test1"
+  }
+]
