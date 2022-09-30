@@ -27,29 +27,13 @@ public class ContactInfoTests extends TestBase {
   }
 
   @Test
-  public void testContactPhones() {
+  public void testContactInfo() {
     app.goTo().homePage();
     ContactData contact = app.contact().all().iterator().next();
     ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
 
     assertThat(contact.getAllPhones(), equalTo(mergePhones(contactInfoFromEditForm)));
-  }
-
-  @Test
-  public void testContactMail() {
-    app.goTo().homePage();
-    ContactData contact = app.contact().all().iterator().next();
-    ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
-
     assertThat(contact.getAllMails(), equalTo(mergeMails(contactInfoFromEditForm)));
-  }
-
-  @Test
-  public void testAddress() {
-    app.goTo().homePage();
-    ContactData contact = app.contact().all().iterator().next();
-    ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
-
     assertThat(contact.getAddress(), equalTo(cleanedAddress(contactInfoFromEditForm.getAddress())));
   }
 
