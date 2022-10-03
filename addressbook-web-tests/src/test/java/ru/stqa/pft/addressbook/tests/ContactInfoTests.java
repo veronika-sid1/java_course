@@ -15,14 +15,14 @@ public class ContactInfoTests extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions() {
-    app.goTo().groupPage();
-    if (app.group().all().size() == 0) {
+    if (app.db().groups().size() == 0) {
+      app.goTo().groupPage();
       app.group().create(new GroupData().withName("test1").withHeader("test2").withFooter("test3"));
     }
-    app.goTo().homePage();
-    if (app.contact().all().size() == 0) {
-      app.contact().create(new ContactData().withFirstname("Olga").withLastname("Smolova")
-              .withMail("olgasm@mail.com").withGroup("test1").withHomePhone("79821234323").withAddress("улица Королева 7, дом 3, квартира 7"));
+    if (app.db().contacts().size() == 0) {
+      app.goTo().homePage();
+      app.contact().create(new ContactData().withFirstname("Olga").withLastname("Smolova").withMail("olgasm@mail.com").withGroup("test1")
+              .withHomePhone("79821234323"));
     }
   }
 

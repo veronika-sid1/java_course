@@ -5,6 +5,8 @@
       <option name="excludeList">
         <list>
           <option value="org.slf4j:slf4j-simple" />
+          <option value="ch.qos.logback:logback-classic" />
+          <option value="org.testng:testng" />
         </list>
       </option>
     </inspection_tool>

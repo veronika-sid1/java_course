@@ -20,7 +20,7 @@ public class ContactHelper extends HelperBase {
   }
 
   public void submitContactCreation() {
-    click(By.xpath("//div[@id='content']/form/input[21]"));
+    click(By.name("submit"));
   }
 
   public void fill(ContactData contact, boolean creation) {
@@ -32,9 +32,7 @@ public class ContactHelper extends HelperBase {
     type(By.name("home"), contact.getHomePhone());
     type(By.name("mobile"), contact.getMobilePhone());
     type(By.name("work"), contact.getWorkPhone());
-    attach(By.name("photo"), contact.getPhoto());
-
-
+    //attach(By.name("photo"), contact.getPhoto());
 
     if (creation) {
       new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contact.getGroup());

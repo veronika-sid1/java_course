@@ -1,42 +1,104 @@
 package ru.stqa.pft.addressbook.model;
 
 import com.google.gson.annotations.Expose;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.*;
 import java.io.File;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Objects;
 
+@Entity
+@Table(name = "addressbook")
 public class ContactData {
 
-  private int id = Integer.MAX_VALUE;;
+  @Id
+  @Column(name = "id")
+  private int id = Integer.MAX_VALUE;
+  @Column(name = "firstname")
   @Expose
   private String firstname;
+  @Column(name = "lastname")
   @Expose
   private String lastname;
+  @Column(name = "email")
   @Expose
+  @Type(type = "text")
   private String mail;
+  @Column(name = "email2")
+  @Type(type = "text")
   private String email2;
+  @Column(name = "email3")
+  @Type(type = "text")
   private String email3;
+  @Transient
   private String allMails;
+  @Transient
   @Expose
   private String group;
+  @Column(name = "home")
+  @Type(type = "text")
   private String homePhone;
+  @Column(name = "mobile")
+  @Type(type = "text")
   private String mobilePhone;
+  @Column(name = "work")
+  @Type(type = "text")
   private String workPhone;
+  @Transient
   private String allPhones;
+  @Column(name = "address")
+  @Type(type = "text")
   private String address;
-  private File photo;
+  @Column(name = "photo")
+  @Type(type = "text")
+  private String photo;
 
+  public int getId() {
+    return id;
+  }
+  public String getFirstname() {
+    return firstname;
+  }
+  public String getLastname() {
+    return lastname;
+  }
+  public String getMail() {return mail;}
+  public String getMail2() {
+    return email2;
+  }
+  public String getMail3() {
+    return email3;
+  }
+  public String getAllMails() {
+    return allMails;
+  }
+  public String getGroup() {return group;}
+  public String getHomePhone() {
+    return homePhone;
+  }
+  public String getMobilePhone() {
+    return mobilePhone;
+  }
+  public String getWorkPhone() {
+    return workPhone;
+  }
+  public String getAllPhones() {
+    return allPhones;
+  }
+  public String getAddress() {
+    return address;
+  }
   public File getPhoto() {
-    return photo;
+    return new File(photo);
   }
 
   public ContactData withPhoto(File photo) {
-    this.photo = photo;
+    this.photo = photo.getPath();
     return this;
-  }
-
-  public String getAllMails() {
-    return allMails;
   }
 
   public ContactData withAllMails(String allMails) {
@@ -44,9 +106,9 @@ public class ContactData {
     return this;
   }
 
-
-  public String getMail2() {
-    return email2;
+  public ContactData withMail(String mail) {
+    this.mail = mail;
+    return this;
   }
 
   public ContactData withEmail2(String email2) {
@@ -54,17 +116,9 @@ public class ContactData {
     return this;
   }
 
-  public String getMail3() {
-    return email3;
-  }
-
   public ContactData withEmail3(String email3) {
     this.email3 = email3;
     return this;
-  }
-
-  public String getAddress() {
-    return address;
   }
 
   public ContactData withAddress(String address) {
@@ -72,17 +126,9 @@ public class ContactData {
     return this;
   }
 
-  public String getAllPhones() {
-    return allPhones;
-  }
-
   public ContactData withAllPhones(String allPhones) {
     this.allPhones = allPhones;
     return this;
-  }
-
-  public int getId() {
-    return id;
   }
 
   public ContactData withFirstname(String firstname) {
@@ -92,10 +138,6 @@ public class ContactData {
 
   public ContactData withLastname(String lastname) {
     this.lastname = lastname;
-    return this;
-  }
-  public ContactData withMail(String mail) {
-    this.mail = mail;
     return this;
   }
 
@@ -124,54 +166,25 @@ public class ContactData {
     return this;
   }
 
-  public String getFirstname() {
-    return firstname;
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    ContactData contactData = (ContactData) o;
+    return id == contactData.id && Objects.equals(firstname, contactData.firstname) && Objects.equals(lastname, contactData.lastname) && Objects.equals(mail, contactData.mail);
   }
 
-  public String getLastname() {
-    return lastname;
-  }
-
-  public String getMail() {
-    return mail;
-  }
-
-  public String getGroup() {
-    return group;
+  @Override
+  public int hashCode() {
+    return Objects.hash(id, firstname, lastname, mail);
   }
 
   @Override
   public String toString() {
     return "ContactData{" +
-            "id='" + id + '\'' +
+            "id=" + id +
             ", firstname='" + firstname + '\'' +
             ", lastname='" + lastname + '\'' +
             '}';
   }
-
-  public String getHomePhone() {
-    return homePhone;
-  }
-
-  public String getMobilePhone() {
-    return mobilePhone;
-  }
-
-  public String getWorkPhone() {
-    return workPhone;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    ContactData that = (ContactData) o;
-    return id == that.id && Objects.equals(firstname, that.firstname) && Objects.equals(lastname, that.lastname);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(id, firstname, lastname);
-  }
-
 }

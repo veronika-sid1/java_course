@@ -38,32 +38,32 @@ public class ContactCreationTests extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions() {
-    app.goTo().groupPage();
-    if (app.group().all().size() == 0) {
+    if (app.db().groups().size() == 0) {
+      app.goTo().groupPage();
       app.group().create(new GroupData().withName("test1").withHeader("test2").withFooter("test3"));
     }
   }
   @Test(dataProvider = "validContacts")
   public void testContactCreation(ContactData contact){
     app.goTo().homePage();
-    Contacts before = app.contact().all();
-    File photo = new File("src/test/resources/pic.jpg");
+    Contacts before = app.db().contacts();
+    //File photo = new File("src/test/resources/pic.jpg");
     app.contact().create(contact);
-    Contacts after = app.contact().all();
+    Contacts after = app.db().contacts();
     assertThat(app.contact().count(), equalTo(before.size() + 1));
     assertThat(after, equalTo(
-            before.withAdded(contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
+            before.withAdded(contact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
   }
 
   @Test
   public void testBadContactCreation(){
     app.goTo().homePage();
-    Contacts before = app.contact().all();
+    Contacts before = app.db().contacts();
     ContactData contact = new ContactData().withFirstname("Oksana'").withLastname("Smirnova")
-            .withMail("olgasm@mail.com").withGroup("test1").withHomePhone("79821234323");
+            .withMail("olgasm@mail.com").withGroup("test1").withHomePhone("79821234323").withPhoto(new File("src/test/resources/pic.jpg"));
     app.contact().create(contact);
     assertThat(app.contact().count(), equalTo(before.size()));
-    Contacts after = app.contact().all();
+    Contacts after = app.db().contacts();
     assertThat(after, equalTo(before));
   }
 
