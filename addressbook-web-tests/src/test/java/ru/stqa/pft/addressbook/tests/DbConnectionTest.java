@@ -34,4 +34,5 @@ public class DbConnectionTest {
       System.out.println("VendorError: " + ex.getErrorCode());
     }
   }
+
 }

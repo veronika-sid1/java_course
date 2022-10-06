@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import java.io.File;
 
@@ -20,18 +21,19 @@ public class ContactModificationTests extends TestBase {
       app.group().create(new GroupData().withName("test1").withHeader("test2").withFooter("test3"));
     }
     if (app.db().contacts().size() == 0) {
+      Groups groups = app.db().groups();
       app.goTo().homePage();
-      app.contact().create(new ContactData().withFirstname("Olga").withLastname("Smolova").withMail("olgasm@mail.com").withGroup("test1")
-              .withHomePhone("79821234323"));
+      app.contact().create(new ContactData().withFirstname("Olga").withLastname("Smolova").withMail("olgasm@mail.com").withHomePhone("79821234323").inGroup(groups.iterator().next()));
     }
   }
 
   @Test
   public void testContactModification() {
+    Groups groups = app.db().groups();
     Contacts before = app.db().contacts();
     ContactData modifiedContact = before.iterator().next();
-    ContactData contact = new ContactData().withId(modifiedContact.getId()).withFirstname("Olga").withLastname("Ivanova")
-            .withMail("olgasm@mail.com").withGroup("test1").withPhoto(new File("src/test/resources/pic.jpg"));
+    ContactData contact = new ContactData().withId(modifiedContact.getId()).withFirstname("Name").withLastname("Surname")
+            .withMail("olgasm@mail.com").inGroup(groups.iterator().next()).withPhoto(new File("src/test/resources/pic.jpg"));
     app.contact().modify(contact);
     assertThat(app.group().count(), equalTo(before.size()));
     Contacts after = app.db().contacts();

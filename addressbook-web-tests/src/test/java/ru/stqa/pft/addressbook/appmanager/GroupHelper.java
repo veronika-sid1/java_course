@@ -3,6 +3,7 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 
@@ -93,5 +94,22 @@ public class GroupHelper extends HelperBase {
       groupCache.add(new GroupData().withId(id).withName(name));
     }
     return new Groups(groupCache);
+  }
+
+  public GroupData chooseGroupToAdd(ContactData contact, Groups groups) {
+    GroupData chosenGroup = null;
+    if (contact.getGroups().size() == 0) {
+      chosenGroup = groups.stream().iterator().next();
+    } else {
+      for (GroupData group : groups) {
+        for (GroupData ignored : contact.getGroups()) {
+          if (! contact.getGroups().contains(group)){
+            chosenGroup = group;
+            break;
+          }
+        }
+      }
+    }
+    return chosenGroup;
   }
 }
