@@ -14,11 +14,13 @@ import java.util.Properties;
 public class ApplicationManager {
 
   private final Properties properties;
-  private WebDriver wd;
+  WebDriver wd;
   private String browser;
   private RegistrationHelper registrationHelper;
   private FtpHelper ftp;
   private MailHelper mailHelper;
+  private SessionHelper sessionHelper;
+  private DbHelper dbHelper;
 
   public ApplicationManager(String browser) {
     this.browser = browser;
@@ -51,6 +53,13 @@ public class ApplicationManager {
     return registrationHelper;
   }
 
+  public SessionHelper changePassHelper() {
+    if (sessionHelper == null) {
+      sessionHelper = new SessionHelper(this);
+    }
+    return sessionHelper;
+  }
+
   public FtpHelper ftp() {
     if (ftp == null) {
       ftp = new FtpHelper(this);
@@ -78,4 +87,12 @@ public class ApplicationManager {
     }
     return mailHelper;
   }
+
+  public DbHelper db(){
+    if (dbHelper == null) {
+      dbHelper = new DbHelper(this);
+    }
+    return dbHelper;
+  }
+
 }
