@@ -43,9 +43,7 @@ public class SoapTests extends TestBase{
     IssueData[] issues = mc.mc_project_get_issues(app.getProperty("web.adminLogin"), app.getProperty("web.adminPassword"),
             valueOf(projects.iterator().next().getId()), valueOf(1-10), valueOf(-1));
     for (IssueData issue : issues) {
-      if (isIssueOpen(issue.getId())) {
-        skipIfNotFixed(issue.getId());
-      }
+      skipIfNotFixed(issue.getId());
     }
   }
 }
